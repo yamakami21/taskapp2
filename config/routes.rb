@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
-
-    resources :projects
+    # taskはプロジェクトの中で作成する。
+    resources :projects do
+        resources :tasks, only: [:create, :destroy]
+    end
     # /が入っていないURLは大元を表すので、Rootと呼ばれる。
     # rootに割り当てたいのが、今回は、projectsのindexアクションなので。
     root 'projects#index'
 
+    post '/projects/:project_id/tasks/:id/toggle' => 'tasks#toggle'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
