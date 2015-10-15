@@ -1,0 +1,15 @@
+<h1 class="center jumbotron">Project</h1>
+<ul>
+    <!-- 今あるプロジェクトをすべて表示する -->
+    <% @projects.each do |project| %>
+    <li>
+        <%=link_to project.title, project_path(project.id) %>
+        <%=link_to "[Edit]", edit_project_path(project.id) %>
+        <%=link_to "[Delete]", project_path(project.id), method: :delete, data: { confirm: "Are you sure?"} %>
+    </li>
+
+    <% end %>
+</ul>
+
+<!-- <p>タグを入れると開業される。 -->
+<p><%=link_to "Add New Task", new_project_path %></p>
